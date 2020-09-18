@@ -220,6 +220,21 @@ class AdobeSign
 
         return $this->parseResponse($res);
     }
+	
+    public function getAgreementEvents($agreementId, array $headers = [])
+    {
+        $request = $this->provider->getAuthenticatedRequest(
+            'GET',
+            "$this->baseUri/$this->version/agreements/$agreementId/events",
+            $this->accessToken, [
+                'headers' => $headers
+            ]
+        );
+
+        $res = $this->provider->getResponse($request);
+
+        return $this->parseResponse($res);
+    }
 
     public function getAgreementAuditTrail($agreementId, array $headers = [])
     {
